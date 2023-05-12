@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "280940830966",
+    "project_id": "cupkat-mobile-multi-store",
+    "storage_bucket": "cupkat-mobile-multi-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280940830966:android:62754b69d7c17bf4038cd7",
+        "android_client_info": {
+          "package_name": "com.cupkat.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280940830966-pbm362rhbiutl11kj69hncsnkkijrudn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cupkat.flutter_application_1",
+            "certificate_hash": "f58fa6be91f80c3e325ff9667348b2d065111513"
+          }
+        },
+        {
+          "client_id": "280940830966-ut084k8ev6jglgm24bm3s4bkg3ton2kk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6v8Oz_14WXfZVOObK0SetVCkiIUtZADI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280940830966-ut084k8ev6jglgm24bm3s4bkg3ton2kk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
