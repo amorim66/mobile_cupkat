@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/banner_widget.dart';
+import 'widgets/category_text.dart';
 import 'widgets/search_input_widget.dart';
 import 'widgets/welcome_text_widget.dart';
 
@@ -9,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         WelcomeText(),
         SizedBox(
@@ -17,6 +19,7 @@ class HomeScreen extends StatelessWidget {
         SearchInput(),
         
         BannerWidget(),
+        CategoryText(),
       ],
     );
   }
