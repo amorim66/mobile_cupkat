@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/views/buyers/main_screen.dart';
 
+import 'views/buyers/auth/register_screen.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Brand-Bold',
       ),
-      home: MainScreen(),
+      home: RegisterScreen(),
     );
   }
 }
