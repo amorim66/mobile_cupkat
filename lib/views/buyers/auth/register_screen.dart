@@ -1,15 +1,19 @@
+import 'dart:typed_data';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
 import 'package:flutter_application_1/utils/show_snackBar.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'login_screen.dart';
 
-class RegisterScreen extends StatefulWidget {
+class BuyerRegisterScreen extends StatefulWidget {
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<BuyerRegisterScreen> createState() => _BuyerRegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _BuyerRegisterScreenState extends State<BuyerRegisterScreen> {
   final AuthController _authController = AuthController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -24,16 +28,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   bool _isLoading = false;
 
+  Uint8List ? _image;
+
   _signUpUser() async {
     setState(() {
       _isLoading = true;
     });
     if (_formKey.currentState!.validate()) {
       await _authController
-          .signUpUsers(email, fullName, phoneNumber, password)
+          .signUpUsers(email, fullName, phoneNumber, password, _image)
           .whenComplete(() {
         setState(() {
           _formKey.currentState!.reset();
+          _image = null;
           _isLoading = false;
         });
       });
@@ -44,6 +51,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
       return showSnack(context, 'Campos não podem estar vazios.');
     }
+  }
+
+  selectGalleryImage() async{
+    Uint8List im = await _authController.pickProfileImage(ImageSource.gallery);
+
+    setState(() {
+      _image = im;
+    });
+  }
+
+  selectCameraImage() async{
+    Uint8List im = await _authController.pickProfileImage(ImageSource.camera);
+
+    setState(() {
+      _image = im;
+    });
   }
 
   @override
@@ -60,9 +83,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   'Criar Conta do Cliente',
                   style: TextStyle(fontSize: 20),
                 ),
-                CircleAvatar(
-                  radius: 54,
-                  backgroundColor: Colors.yellow.shade900,
+                Stack(
+                  children: [
+                    _image!=null? CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Colors.yellow.shade900,
+                      backgroundImage: MemoryImage(_image!),
+                    ):CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Color.fromARGB(255, 85, 85, 84),
+                      backgroundImage: NetworkImage('https://as2.ftcdn.net/v2/jpg/00/64/67/63/1000_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'),
+                    ),
+                    Positioned(
+                      right: -9,
+                      top: 2,
+                      child: IconButton(
+                        onPressed: () {
+                          selectGalleryImage();
+                        },
+                        icon: Icon(
+                          CupertinoIcons.photo,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -149,17 +193,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
-                        child:_isLoading ? CircularProgressIndicator(
-                          color: Colors.white,
-                        ) : Text(
-                      'Cadastrar',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                      ),
-                    )),
+                        child: _isLoading
+                            ? CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                            : Text(
+                                'Cadastrar',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 2,
+                                ),
+                              )),
                   ),
                 ),
                 Row(

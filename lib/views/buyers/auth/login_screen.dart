@@ -17,7 +17,12 @@ class _LoginScreenState extends State<LoginScreen> {
   late String email;
   late String password;
 
+  bool _isLoading = false;
+
   _loginUsers() async {
+    setState(() {
+      _isLoading = true;
+    });
     if (_formKey.currentState!.validate()) {
       String res = await _authController.loginUsers(email, password);
 
@@ -27,6 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
           return MainScreen();
         }));
       } else {
+        setState(() {
+          _isLoading = false;
+        });
         return showSnack(context, res);
       }
     } else {
@@ -74,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'O campo Senha não pode estra vazio';
+                        return 'O campo Senha não pode estar vazio';
                       } else {
                         return null;
                       }
@@ -101,13 +109,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.yellow.shade900,
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          letterSpacing: 5,
-                          color: Colors.white,
-                        ),
-                      ),
+                      child: _isLoading
+                          ? CircularProgressIndicator(
+                              color: Colors.white,
+                            )
+                          : Text(
+                              'Login',
+                              style: TextStyle(
+                                letterSpacing: 5,
+                                color: Colors.white,
+                              ),
+                            ),
                     ),
                   ),
                 ),
@@ -119,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return RegisterScreen();
+                          return BuyerRegisterScreen();
                         }));
                       },
                       child: Text(

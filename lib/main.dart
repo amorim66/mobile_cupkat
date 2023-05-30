@@ -1,7 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/provider/product_provider.dart';
+import 'package:flutter_application_1/vendor/views/screens/main_vendor_screen.dart';
+import 'package:flutter_application_1/views/buyers/auth/login_screen.dart';
 import 'package:flutter_application_1/views/buyers/main_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'views/buyers/auth/register_screen.dart';
 
@@ -9,7 +13,13 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_){
+        return ProductProvider();
+      })
+    ],
+    child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -26,7 +36,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Brand-Bold',
       ),
-      home: RegisterScreen(),
+      home: MainVendorScreen(),
     );
   }
 }
