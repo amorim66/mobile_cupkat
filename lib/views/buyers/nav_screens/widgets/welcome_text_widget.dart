@@ -13,11 +13,14 @@ class WelcomeText extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            'Howdy , What Are You\n Looking For 👀',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Bem-vindo , o que você está \n Procurando? 👀',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Container(

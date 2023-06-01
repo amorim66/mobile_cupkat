@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
 import 'package:flutter_application_1/utils/show_snackBar.dart';
+import 'package:flutter_application_1/vendor/views/auth/vedor_auth.dart';
 import 'package:flutter_application_1/views/buyers/auth/register_screen.dart';
 import 'package:flutter_application_1/views/buyers/main_screen.dart';
 
@@ -137,6 +138,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         'Cadastre-se',
                       ),
+                    ),
+                    Column(
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return VendorAuthScreen();
+                            }));
+                          },
+                          child: Text(
+                            'Sou vendedor',
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 )

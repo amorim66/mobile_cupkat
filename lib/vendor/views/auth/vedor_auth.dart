@@ -17,16 +17,20 @@ class VendorAuthScreen extends StatelessWidget {
       builder: (context, snapshot) {
         // User is not signed in
         if (!snapshot.hasData) {
-          return  SignInScreen(providerConfigs: [
-            EmailProviderConfiguration(),
-
-            GoogleProviderConfiguration(clientId: '1:280940830966:android:ff3b3f2c7eda2c70038cd7'),
-            PhoneProviderConfiguration(),
-          ]);
+          return SignInScreen(
+            providerConfigs: [
+              EmailProviderConfiguration(),
+              GoogleProviderConfiguration(
+                  clientId: '1:280940830966:android:ff3b3f2c7eda2c70038cd7'),
+              PhoneProviderConfiguration(),
+            ],
+            
+          );
         }
-
+        
+        
         // Render your application if authenticated
-        return  LandingScreen();
+        return LandingScreen();
       },
     );
   }

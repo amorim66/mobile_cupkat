@@ -7,7 +7,9 @@ class AttributesTabScreen extends StatefulWidget {
   State<AttributesTabScreen> createState() => _AttributesTabScreenState();
 }
 
-class _AttributesTabScreenState extends State<AttributesTabScreen> {
+class _AttributesTabScreenState extends State<AttributesTabScreen> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   final TextEditingController _sizeController = TextEditingController();
   bool _entered = false;
 
@@ -17,6 +19,7 @@ class _AttributesTabScreenState extends State<AttributesTabScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final ProductProvider _productProvider =
         Provider.of<ProductProvider>(context);
 
@@ -50,13 +53,6 @@ class _AttributesTabScreenState extends State<AttributesTabScreen> {
                   child: Container(
                     width: 100,
                     child: TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Digite o tamanho';
-                        } else {
-                          return null;
-                        }
-                      },
                       controller: _sizeController,
                       onChanged: (value) {
                         setState(() {

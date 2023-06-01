@@ -11,7 +11,10 @@ class GeneralScreen extends StatefulWidget {
   State<GeneralScreen> createState() => _GeneralScreenState();
 }
 
-class _GeneralScreenState extends State<GeneralScreen> {
+class _GeneralScreenState extends State<GeneralScreen>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final List<String> _categoryList = [];
 
@@ -42,6 +45,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final ProductProvider _productProvider =
         Provider.of<ProductProvider>(context);
     return Scaffold(
@@ -52,9 +56,9 @@ class _GeneralScreenState extends State<GeneralScreen> {
             children: [
               TextFormField(
                 validator: (value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Digite o Nome do Produto';
-                  } else{
+                  } else {
                     return null;
                   }
                 },
@@ -70,9 +74,9 @@ class _GeneralScreenState extends State<GeneralScreen> {
               ),
               TextFormField(
                 validator: (value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Digite o Preço do Produto';
-                  } else{
+                  } else {
                     return null;
                   }
                 },
@@ -89,9 +93,9 @@ class _GeneralScreenState extends State<GeneralScreen> {
               ),
               TextFormField(
                 validator: (value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Digite a Quantidade do Produto';
-                  } else{
+                  } else {
                     return null;
                   }
                 },
@@ -120,9 +124,9 @@ class _GeneralScreenState extends State<GeneralScreen> {
               ),
               TextFormField(
                 validator: (value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Digite a Descrição do Produto';
-                  } else{
+                  } else {
                     return null;
                   }
                 },
@@ -155,12 +159,12 @@ class _GeneralScreenState extends State<GeneralScreen> {
                     },
                     child: Text('SCHEDULE'),
                   ),
-                  if(_productProvider.productData['scheduleDate']!=null)
-                  Text(
-                    formatedDate(
-                      _productProvider.productData['scheduleDate'],
+                  if (_productProvider.productData['scheduleDate'] != null)
+                    Text(
+                      formatedDate(
+                        _productProvider.productData['scheduleDate'],
+                      ),
                     ),
-                  ),
                 ],
               )
             ],

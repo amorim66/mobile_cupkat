@@ -37,7 +37,7 @@ class _BannerWidgetState extends State<BannerWidget> {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Container(
-        height: 138,
+        height: 125,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.yellow.shade900,
