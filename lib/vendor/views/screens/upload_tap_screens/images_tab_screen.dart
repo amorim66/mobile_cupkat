@@ -34,7 +34,8 @@ class _ImagesTabScreenState extends State<ImagesTabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ProductProvider _productProvider = Provider.of<ProductProvider>(context);
+    final ProductProvider _productProvider =
+        Provider.of<ProductProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -86,7 +87,7 @@ class _ImagesTabScreenState extends State<ImagesTabScreen> {
                 });
               }
             },
-            child: Text('Upload'),
+            child: _image.isNotEmpty ? Text('Upload') : Text(''),
           )
         ],
       ),

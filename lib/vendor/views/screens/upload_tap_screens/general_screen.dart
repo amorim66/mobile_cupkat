@@ -51,6 +51,13 @@ class _GeneralScreenState extends State<GeneralScreen> {
           child: Column(
             children: [
               TextFormField(
+                validator: (value) {
+                  if(value!.isEmpty){
+                    return 'Digite o Nome do Produto';
+                  } else{
+                    return null;
+                  }
+                },
                 onChanged: (value) {
                   _productProvider.getFormData(productName: value);
                 },
@@ -62,6 +69,13 @@ class _GeneralScreenState extends State<GeneralScreen> {
                 height: 20,
               ),
               TextFormField(
+                validator: (value) {
+                  if(value!.isEmpty){
+                    return 'Digite o Preço do Produto';
+                  } else{
+                    return null;
+                  }
+                },
                 onChanged: (value) {
                   _productProvider.getFormData(
                       productPrice: double.parse(value));
@@ -74,6 +88,13 @@ class _GeneralScreenState extends State<GeneralScreen> {
                 height: 20,
               ),
               TextFormField(
+                validator: (value) {
+                  if(value!.isEmpty){
+                    return 'Digite a Quantidade do Produto';
+                  } else{
+                    return null;
+                  }
+                },
                 onChanged: (value) {
                   _productProvider.getFormData(quantity: int.parse(value));
                 },
@@ -98,6 +119,13 @@ class _GeneralScreenState extends State<GeneralScreen> {
                 height: 20,
               ),
               TextFormField(
+                validator: (value) {
+                  if(value!.isEmpty){
+                    return 'Digite a Descrição do Produto';
+                  } else{
+                    return null;
+                  }
+                },
                 onChanged: (value) {
                   _productProvider.getFormData(description: value);
                 },
